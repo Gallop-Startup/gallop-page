@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use League\OAuth2\Client\Provider\GenericProvider;
@@ -29,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // OAuth2 Provider Configuration
     $provider = new GenericProvider([
-        'clientId'                => $_ENV['OAUTH_CLIENT_ID'], // The client ID assigned to you by the provider
-        'clientSecret'            => $_ENV['OAUTH_CLIENT_SECRET'], // The client password assigned to you by the provider
+        'clientId'                => $_ENV['OAUTH_CLIENT_ID'], 
+        'clientSecret'            => $_ENV['OAUTH_CLIENT_SECRET'], 
         'redirectUri'             => 'https://login.microsoftonline.com/common/oauth2/nativeclient',
         'urlAuthorize'            => 'https://login.microsoftonline.com/' . $_ENV['OAUTH_TENANT_ID'] . '/oauth2/v2.0/authorize',
         'urlAccessToken'          => 'https://login.microsoftonline.com/' . $_ENV['OAUTH_TENANT_ID'] . '/oauth2/v2.0/token',
@@ -59,12 +63,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->Port = 587;                                   // TCP port to connect to
 
         // Recipients
-        $mail->setFrom($_ENV['SMTP_USER'], 'Politheon Founders'); // Sender's email and name
+        $mail->setFrom($_ENV['SMTP_USER'], 'Politheon Founders'); 
         $mail->addAddress('founders@politheon.com');
-        $mail->addReplyTo($email, $name); // Add a reply-to address
+        $mail->addReplyTo($email, $name); 
 
         // Content
-        $mail->isHTML(true);                           // Set email format to HTML
+        $mail->isHTML(true);                           
         $mail->Subject = 'New Contact Form Submission';
         $mail->Body = "
             <h2>New Contact Message</h2>
