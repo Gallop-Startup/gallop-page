@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
 
         console.log("Sending contact form data...");
-        fetch("mail/contact_me.php", {
+        fetch("https://contact-form-app-cxbphtczh9fpcwe3.scm.eastus-01.azurewebsites.net/wwwroot/contact_me.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded" 
