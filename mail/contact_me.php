@@ -39,9 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
         // Get an access token
-        $accessToken = $provider->getAccessToken('client_credentials', [
-            'scope' => 'https://graph.microsoft.com/.default',
-        ]);
+        $accessToken = $provider->getAccessToken('client_credentials');
 
         // Setup PHPMailer
         $mail = new PHPMailer(true);
@@ -53,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             'provider' => $provider,
             'clientId' => $_ENV['OAUTH_CLIENT_ID'],
             'clientSecret' => $_ENV['OAUTH_CLIENT_SECRET'],
-            'refreshToken' => $accessToken->getRefreshToken(),
+            'refreshToken' => $accessToken->getToken(),
             'userName' => $_ENV['SMTP_USER'], 
         ]));
        
